@@ -7,6 +7,4 @@ const Card = require('../../db/models/Card');
 
 const router = express.Router();
 
-
-
 module.exports = router;

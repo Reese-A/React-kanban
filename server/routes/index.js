@@ -1,15 +1,15 @@
 const express = require('express');
 
-const user = require('../../db/models/User');
-const priority = require('../../db/models/Priority');
-const status = require('../../db/models/Status');
-const card = require('../../db/models/Card');
+const users = require('./users');
+const priorities = require('./priorities');
+const status = require('./status');
+const cards = require('./cards');
 
 const router = express.Router();
 
 router.use('/users', users);
 router.use('/cards', cards);
-router.use('/priorities', priority);
+router.use('/priorities', priorities);
 router.use('/status', status);
 
 module.exports = router;

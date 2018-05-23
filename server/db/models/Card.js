@@ -21,4 +21,4 @@ class Card extends bookshelf.Model {
   }
 }
 
-module.exports = bookshelf.model('User', User)
+module.exports = bookshelf.model('Card', Card)
