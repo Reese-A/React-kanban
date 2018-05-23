@@ -5,19 +5,19 @@ class Card extends bookshelf.Model {
   get hasTimestamps() { return true }
 
   priorities() {
-    return this.belongsToMany('Priority', 'priority');
+    return this.belongsTo('Priority', 'priority');
   }
 
   status() {
-    return this.belongsToMany('Status', 'status');
+    return this.belongsTo('Status', 'status');
   }
 
   creator() {
-    return this.belongsToMany('User', 'created_by');
+    return this.belongsTo('User', 'created_by');
   }
 
   assignee() {
-    return this.belongsToMany('User', 'assigned_to');
+    return this.belongsTo('User', 'assigned_to');
   }
 }
 
