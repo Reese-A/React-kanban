@@ -7,4 +7,35 @@ const Card = require('../../db/models/Card');
 
 const router = express.Router();
 
+router.route('/')
+  .get((req,res) => {
+    return Card()
+    .fetchAll()
+    .then((cards) => {
+      return res.json(cards);
+    })
+  })
+
+  .post((req, res) => {
+    const {
+      title,
+      priority,
+      created_by,
+      assigned_to
+    } = req.body;
+    
+    return new Card({
+      title,
+      priority,
+      status: 1,
+      created_by,
+      assigned_to
+    })
+    .save()
+    .then((card) => {
+      console.log(card);
+      return res.json 
+    })
+  })
+
 module.exports = router;

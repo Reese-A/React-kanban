@@ -6,6 +6,18 @@ const Card = require('../../db/models/Card');
 const router = express.Router();
 
 router.route('/')
+  .get((req, res) => {
+    return Priority()
+      .fetchAll()
+      .then((priorities) => {
+        console.log(priorities);
+        return res.json(priorities);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  })
+
   .post((req,res) => {
     
     let { priority } = req.body;
