@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.route('/')
   .get((req, res) => {
-    return Priority()
+    return new Priority()
       .fetchAll()
       .then((priorities) => {
         console.log(priorities);
