@@ -1,6 +1,5 @@
 // Update with your config settings.
 const path = require('path');
-const DB_PASSWORD = process.env.DB_PASSWORD;
 
 module.exports = {
 
@@ -9,7 +8,7 @@ module.exports = {
     connection: {
       host: '127.0.0.1',
       user: 'react_kanban_user',
-      password: `${DB_PASSWORD}`,
+      password: process.env.DB_PASSWORD,
       database: 'react_kanban',
       charset: 'utf8',
     },
