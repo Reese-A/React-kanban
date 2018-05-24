@@ -9,7 +9,7 @@ const router = express.Router();
 
 router.route('/')
   .get((req,res) => {
-    return Card()
+    return new Card()
     .fetchAll()
     .then((cards) => {
       return res.json(cards);
@@ -34,7 +34,10 @@ router.route('/')
     .save()
     .then((card) => {
       console.log(card);
-      return res.json 
+      return res.json ({ success: true });
+    })
+    .catch((err) => {
+      console.log(err);
     })
   })
 

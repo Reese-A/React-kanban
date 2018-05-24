@@ -8,16 +8,23 @@ class App extends Component {
 
     this.state = {
       title: '',
+      priorities: [],
+      statuses: [],
       cards: [],
     }
   }
 
   componentDidMount() {
-    fetch('/priorities')
-    .then(priorities => priorities.json())
+    const pri = fetch('/priorities');
+    const stat = fetch('/status');
+    const cards = fetch('/cards');
+    Promise.all([pri, stat, cards])
+    .then((result) => {
+      const [pri, stat, cards] = result;
+      return Promise.all([pri.json(), stat.json(), cards.json()])
     .then((result) => {
       console.log(result);
-      
+      })
     })
   }
 
