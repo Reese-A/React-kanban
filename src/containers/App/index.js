@@ -41,6 +41,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header title={this.state.title} />
+        <br/>
         <div id="contentWrap">
           {this.state.statuses.map(status => {
             return (
