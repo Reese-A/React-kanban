@@ -41,17 +41,19 @@ class App extends Component {
     return (
       <div className="App">
         <Header title={this.state.title} />
-        {this.state.statuses.map(status => {
-          return (
-            <Column key={status.id}
-                    statusId = {status.id}
-                    statusName={status.status}
-                    cards={this.state.cards}
-            />
-          )
-        })
-        }
-
+        <div id="contentWrap">
+          {this.state.statuses.map(status => {
+            return (
+              <Column key={status.id}
+                statusId={status.id}
+                statusName={status.status}
+                cards={this.state.cards}
+                priorities={this.state.priorities}
+              />
+            )
+          })
+          }
+        </div>
       </div>
     );
   }

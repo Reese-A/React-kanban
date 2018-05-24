@@ -9,14 +9,21 @@ const Column = props => {
     })
       .map(card => {
         return (
-          <div key={card.id}>
+          <div key={card.id} className="cardWrap">
             <div key={card.title} className="cardTitle">{card.title}</div>
-            <div key={card.priority} className="cardPriority">{card.priority}</div>
+            {props.priorities.filter(pri => {
+              return pri.id === card.priority;
+            })
+              .map(pri => {
+                return <div key={card.priority} className="cardPriority">{pri.priority}</div>
+              })
+            }
           </div>
         )
       })
     }
   </div>
-  )}
+  )
+}
 
 export default Column;
