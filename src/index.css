@@ -3,3 +3,13 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+#contentWrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+column {
+  width: 30%;
+}
