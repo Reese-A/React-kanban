@@ -23,6 +23,10 @@ router.route('/')
       created_by,
       assigned_to
     } = req.body;
+
+    if(!assigned_to){
+      assign_to = null;
+    }
     
     return new Card({
       title,

@@ -9,8 +9,8 @@ exports.up = function(knex, Promise) {
     table.foreign('status').references('id').inTable('status');
     table.string('created_by', 100).notNullable().unsigned();
     table.foreign('created_by').references('name').inTable('users');
-    table.string('assigned_to', 100).notNullable().unsigned();
-    table.foreign('assigned_to').references('name').inTable('users')
+    table.string('assigned_to', 100).unsigned();
+    table.foreign('assigned_to').references('name').inTable('users');
     table.timestamps(true, true);
   });
 };
