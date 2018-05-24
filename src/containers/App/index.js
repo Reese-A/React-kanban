@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import logo from '../../logo.svg';
 import './App.css';
 import Header from '../../components/Header';
+import Column from '../../components/Column';
 
 class App extends Component {
   constructor(props) {
@@ -26,11 +26,13 @@ class App extends Component {
         return Promise.all([pri.json(), stat.json(), cards.json()])
           .then((result) => {
             const [pri, stat, cards] = result;
-            return this.setState({
+
+            this.setState({
               priorities: pri,
               statuses: stat,
               cards: cards
             });
+            return console.log(this.state);
           })
       })
   }
@@ -38,9 +40,19 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      <Header title={this.state.title} />
-      </div>
+        <Header title={this.state.title} />
+        {this.state.statuses.map(status => {
+          return (
+            <Column key={status.id}
+                    statusId = {status.id}
+                    statusName={status.status}
+                    cards={this.state.cards}
+            />
+          )
+        })
+        }
 
+      </div>
     );
   }
 }
