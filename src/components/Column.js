@@ -15,7 +15,7 @@ const Column = props => {
               return pri.id === card.priority;
             })
               .map(pri => {
-                return <div key={card.priority} className="cardPriority">{pri.priority}</div>
+                return <div key={card.priority} className="cardPriority">{pri.name}</div>
               })
             }
             <div key={card.created_by}>Created by: {card.created_by}</div>

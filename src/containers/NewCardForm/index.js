@@ -104,9 +104,9 @@ class NewCardForm extends Component {
             value={this.state.created_by}
             onChange={this.creatorChangeHandler}
           >
-            {this.props.userList.map(user => {
+            {this.props.users.map(user => {
               return (
-                <option key={user.id} value={user.name}>{user.name}</option>
+                <Dropdown key={user.id} item={user} />
               )
             })
             }
@@ -119,9 +119,9 @@ class NewCardForm extends Component {
             onChange={this.assigneeChangeHandler}
           >
           <option value={null}></option>
-            {this.props.userList.map(user => {
+            {this.props.users.map(user => {
               return (
-                <option key={user.id} value={user.name}>{user.name}</option>
+                <Dropdown key={user.id} item={user} />
               )
             })
             }

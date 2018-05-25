@@ -65,7 +65,7 @@ class App extends Component {
             return (
               <Column key={status.id}
                 statusId={status.id}
-                statusName={status.status}
+                statusName={status.name}
                 cards={this.state.cards}
                 priorities={this.state.priorities}
               />
@@ -74,7 +74,7 @@ class App extends Component {
           }
         </div>
         <br/>
-        <NewCardForm priorities={this.state.priorities} userList={this.state.users} submitHandler={this.addNewCard}/>
+        <NewCardForm priorities={this.state.priorities} users={this.state.users} submitHandler={this.addNewCard}/>
       </div>
     );
   }
