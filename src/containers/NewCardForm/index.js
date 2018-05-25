@@ -9,7 +9,6 @@ class NewCardForm extends Component {
     this.state = {
       title: '',
       priority: '',
-      status: '',
       created_by: '',
       assigned_to: ''
     }
@@ -43,25 +42,15 @@ class NewCardForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    fetch('/cards', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        title: this.state.title,
-        priority: this.state.priority,
-        created_by: this.state.created_by,
-        assigned_to: this.state.assigned_to
-      })
-    })
-      .then(res => res.json())
-      .then((card) => {
-        return this.props.submitHandler(Object.assign({}, card))
-      })
+
+    return this.props.submitHandler(Object.assign({}, this.state))
       .then(() => {
-        this.setState({ title: '', author: '' });
+        this.setState({
+          title: '',
+          priority: '',
+          created_by: '',
+          assigned_to: ''
+        });
       })
   }
 

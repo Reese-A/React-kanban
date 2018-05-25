@@ -28,7 +28,7 @@ class App extends Component {
     const users = fetch('/users');
     Promise.all([pri, stat, cards, users])
       .then((result) => {
-        const [pri, stat, cards, users]= result;
+        const [pri, stat, cards, users] = result;
         return Promise.all([pri.json(), stat.json(), cards.json(), users.json()])
           .then((result) => {
             const [pri, stat, cards, users] = result;
@@ -50,8 +50,26 @@ class App extends Component {
   }
 
   addNewCard(card) {
-      this.setState({
-        cards: [...this.state.cards, card]
+    return fetch('/cards',
+      {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          title: card.title,
+          priority: card.priority,
+          created_by: card.created_by,
+          assigned_to: card.assigned_to
+        })
+      })
+      .then(card => card.json())
+      .then((card) => {
+        console.log(card);
+        this.setState({
+          cards: [...this.state.cards, card]
+        })
       })
   }
 
@@ -59,6 +77,13 @@ class App extends Component {
     return (
       <div className="App">
         <Header title={this.state.title} />
+        <br />
+
+        <NewCardForm
+          priorities={this.state.priorities}
+          users={this.state.users}
+          submitHandler={this.addNewCard}
+        />
         <br/>
 
         <div id="contentWrap">
@@ -74,14 +99,6 @@ class App extends Component {
             )
           })}
         </div>
-
-        <br/>
-        <NewCardForm 
-          priorities={this.state.priorities} 
-          users={this.state.users} 
-          submitHandler={this.addNewCard}
-        />
-        
       </div>
     );
   }

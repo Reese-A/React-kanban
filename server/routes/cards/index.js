@@ -10,19 +10,27 @@ const router = express.Router();
 router.route('/')
   .get((req,res) => {
     return new Card()
-    .fetchAll( {withRelated: ['status', 'priority', 'created_by', 'assigned_to']} )
+    .fetchAll(/* {withRelated: ['status', 'priority', 'created_by', 'assigned_to']} */)
     .then((cards) => {
       return res.json(cards);
+    })
+    .catch((err) => {
+      console.log(err);
     })
   })
 
   .post((req, res) => {
-    const {
+    let {
       title,
       priority,
       created_by,
       assigned_to
     } = req.body;
+
+    title = title.trim();
+    priority = Number(priority);
+    created_by = Number(created_by);
+    assigned_to = Number(assigned_to);
 
     if(!assigned_to){
       assign_to = null;
