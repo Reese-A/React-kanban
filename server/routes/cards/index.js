@@ -38,7 +38,7 @@ router.route('/')
     .save()
     .then((card) => {
       console.log(card);
-      return res.json ({ success: true });
+      return res.json(card)
     })
     .catch((err) => {
       console.log(err);

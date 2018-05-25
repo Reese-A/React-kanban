@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
+
 import Header from '../../components/Header';
 import Column from '../../components/Column';
+import NewCardForm from '../../containers/NewCardForm';
 
 class App extends Component {
   constructor(props) {
@@ -12,6 +14,7 @@ class App extends Component {
       priorities: [],
       statuses: [],
       cards: [],
+      users: []
     }
   }
 
@@ -20,28 +23,53 @@ class App extends Component {
     const pri = fetch('/priorities');
     const stat = fetch('/status');
     const cards = fetch('/cards');
-    Promise.all([pri, stat, cards])
+    const users = fetch('/users');
+    Promise.all([pri, stat, cards, users])
       .then((result) => {
-        const [pri, stat, cards] = result;
-        return Promise.all([pri.json(), stat.json(), cards.json()])
+        const [pri, stat, cards, users] = result;
+        return Promise.all([pri.json(), stat.json(), cards.json(), users.json()])
           .then((result) => {
-            const [pri, stat, cards] = result;
+            const [pri, stat, cards, users] = result;
 
             this.setState({
               priorities: pri,
               statuses: stat,
-              cards: cards
+              cards: cards,
+              users: users
             });
             return console.log(this.state);
           })
+          .catch((err) => {
+            console.log(err);
+          });
       })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  addNewCard(card) {
+    fetch('/cards', {
+      method: 'POST'
+    })
+    .then((card) => {
+      return card.json();
+    })
+    .then((card) => {
+      this.setState( {
+        cards: [...this.state.cards, card]
+      })
+    })
+    .catch((err) => {
+      console.log(err);
+    })
   }
 
   render() {
     return (
       <div className="App">
         <Header title={this.state.title} />
-        <br/>
+        <br />
         <div id="contentWrap">
           {this.state.statuses.map(status => {
             return (
@@ -55,6 +83,8 @@ class App extends Component {
           })
           }
         </div>
+        <br/>
+        <NewCardForm userList={this.state.users} />
       </div>
     );
   }

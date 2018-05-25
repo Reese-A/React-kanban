@@ -7,9 +7,9 @@ body {
 #contentWrap {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 
-column {
-  width: 30%;
+.column {
+  width: 32%;
 }

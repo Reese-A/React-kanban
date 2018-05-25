@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Column = props => {
-  return (<div>
+  return (<div className="column">
     <h2 className="statusName">{props.statusName}</h2>
     {props.cards.filter(card => {
       return card.status === props.statusId;
