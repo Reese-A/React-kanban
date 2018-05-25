@@ -59,7 +59,8 @@ class App extends Component {
     return (
       <div className="App">
         <Header title={this.state.title} />
-        <br />
+        <br/>
+
         <div id="contentWrap">
           {this.state.statuses.map(status => {
             return (
@@ -67,14 +68,20 @@ class App extends Component {
                 statusId={status.id}
                 statusName={status.name}
                 cards={this.state.cards}
+                users={this.state.users}
                 priorities={this.state.priorities}
               />
             )
-          })
-          }
+          })}
         </div>
+
         <br/>
-        <NewCardForm priorities={this.state.priorities} users={this.state.users} submitHandler={this.addNewCard}/>
+        <NewCardForm 
+          priorities={this.state.priorities} 
+          users={this.state.users} 
+          submitHandler={this.addNewCard}
+        />
+        
       </div>
     );
   }

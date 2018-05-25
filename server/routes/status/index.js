@@ -20,9 +20,9 @@ router.route('/')
   
   .post((req, res) => {
 
-    let { status } = req.body;
+    let { name } = req.body;
 
-    return new Status({ status })
+    return new Status({ name })
       .save()
       .then((status) => {
         return res.json({ success: true });

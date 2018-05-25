@@ -23,25 +23,21 @@ class NewCardForm extends Component {
 
   titleChangeHandler(event) {
     const { value } = event.target
-
     this.setState({ title: value })
   }
 
   priorityChangeHandler(event) {
     const { value } = event.target
-
     this.setState({ priority: value })
   }
 
   creatorChangeHandler(event) {
     const { value } = event.target
-
     this.setState({ created_by: value })
   }
 
   assigneeChangeHandler(event) {
     const { value } = event.target
-
     this.setState({ assigned_to: value })
   }
 
@@ -82,6 +78,7 @@ class NewCardForm extends Component {
             value={this.state.title}
             onChange={this.titleChangeHandler}
           />
+
           <label htmlFor="priority">Priority: </label>
           <select
             id="cardPriority"
@@ -89,14 +86,12 @@ class NewCardForm extends Component {
             value={this.state.priority}
             onChange={this.priorityChangeHandler}
           >
+            <option value={null}></option>
             {this.props.priorities.map((pri) => {
               return <Dropdown key={pri.id} item={pri} />
             })}
-            {/* <option value="1">Low</option>
-            <option value="2">Medium</option>
-            <option value="3">High</option>
-            <option value="4">Blocker</option> */}
           </select>
+
           <label htmlFor="creator"> Created by: </label>
           <select
             id="createdBy"
@@ -104,13 +99,14 @@ class NewCardForm extends Component {
             value={this.state.created_by}
             onChange={this.creatorChangeHandler}
           >
+            <option value={null}></option>
             {this.props.users.map(user => {
               return (
-                <Dropdown key={user.id} item={user} />
+              <Dropdown key={user.id} item={user} />
               )
-            })
-            }
+            })}
           </select>
+
           <label htmlFor="assignee"> Assign to: </label>
           <select
             id="assignedTo"
@@ -118,14 +114,14 @@ class NewCardForm extends Component {
             value={this.state.assigned_to}
             onChange={this.assigneeChangeHandler}
           >
-          <option value={null}></option>
+            <option value={null}></option>
             {this.props.users.map(user => {
               return (
                 <Dropdown key={user.id} item={user} />
               )
-            })
-            }
+            })}
           </select>
+
           <button type="submit">Submit</button>
         </form>
         <div className="form debugging">
