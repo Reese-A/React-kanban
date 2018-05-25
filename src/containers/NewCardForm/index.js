@@ -102,7 +102,7 @@ class NewCardForm extends Component {
             <option value={null}></option>
             {this.props.users.map(user => {
               return (
-              <Dropdown key={user.id} item={user} />
+                <Dropdown key={user.id} item={user} />
               )
             })}
           </select>

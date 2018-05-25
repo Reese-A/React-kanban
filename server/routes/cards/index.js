@@ -10,7 +10,7 @@ const router = express.Router();
 router.route('/')
   .get((req,res) => {
     return new Card()
-    .fetchAll()
+    .fetchAll( {withRelated: ['status', 'priority', 'created_by', 'assigned_to']} )
     .then((cards) => {
       return res.json(cards);
     })

@@ -4,7 +4,7 @@ class Card extends bookshelf.Model {
   get tableName() { return 'cards' }
   get hasTimestamps() { return true }
 
-  priorities() {
+  priority() {
     return this.belongsTo('Priority', 'priority');
   }
 
@@ -12,11 +12,11 @@ class Card extends bookshelf.Model {
     return this.belongsTo('Status', 'status');
   }
 
-  creator() {
+  created_by() {
     return this.belongsTo('User', 'created_by');
   }
 
-  assignee() {
+  assigned_to() {
     return this.belongsTo('User', 'assigned_to');
   }
 }
