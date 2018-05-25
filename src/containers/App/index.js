@@ -30,7 +30,6 @@ class App extends Component {
         return Promise.all([pri.json(), stat.json(), cards.json(), users.json()])
           .then((result) => {
             const [pri, stat, cards, users] = result;
-
             this.setState({
               priorities: pri,
               statuses: stat,
@@ -51,10 +50,9 @@ class App extends Component {
   addNewCard(card) {
     fetch('/cards', {
       method: 'POST'
+      // body: { title, priority, status, assigned_to}
     })
-    .then((card) => {
-      return card.json();
-    })
+    .then(res => res.json())
     .then((card) => {
       this.setState( {
         cards: [...this.state.cards, card]
