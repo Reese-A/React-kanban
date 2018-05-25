@@ -28,7 +28,7 @@ class App extends Component {
     const users = fetch('/users');
     Promise.all([pri, stat, cards, users])
       .then((result) => {
-        const [pri, stat, cards, users] = result;
+        const [pri, stat, cards, users]= result;
         return Promise.all([pri.json(), stat.json(), cards.json(), users.json()])
           .then((result) => {
             const [pri, stat, cards, users] = result;
@@ -74,7 +74,7 @@ class App extends Component {
           }
         </div>
         <br/>
-        <NewCardForm userList={this.state.users} submitHandler={this.addNewCard}/>
+        <NewCardForm priorities={this.state.priorities} userList={this.state.users} submitHandler={this.addNewCard}/>
       </div>
     );
   }

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import Dropdown from '../../components/Dropdown';
+
 class NewCardForm extends Component {
   constructor(props) {
     super(props);
@@ -87,10 +89,13 @@ class NewCardForm extends Component {
             value={this.state.priority}
             onChange={this.priorityChangeHandler}
           >
-            <option value="1">Low</option>
+            {this.props.priorities.map((pri) => {
+              return <Dropdown key={pri.id} item={pri} />
+            })}
+            {/* <option value="1">Low</option>
             <option value="2">Medium</option>
             <option value="3">High</option>
-            <option value="4">Blocker</option>
+            <option value="4">Blocker</option> */}
           </select>
           <label htmlFor="creator"> Created by: </label>
           <select
@@ -113,6 +118,7 @@ class NewCardForm extends Component {
             value={this.state.assigned_to}
             onChange={this.assigneeChangeHandler}
           >
+          <option value={null}></option>
             {this.props.userList.map(user => {
               return (
                 <option key={user.id} value={user.name}>{user.name}</option>
