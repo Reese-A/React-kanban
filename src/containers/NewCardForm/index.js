@@ -16,6 +16,7 @@ class NewCardForm extends Component {
     this.priorityChangeHandler = this.priorityChangeHandler.bind(this);
     this.creatorChangeHandler = this.creatorChangeHandler.bind(this);
     this.assigneeChangeHandler = this.assigneeChangeHandler.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   titleChangeHandler(event) {
@@ -42,6 +43,30 @@ class NewCardForm extends Component {
     this.setState({ assigned_to: value })
   }
 
+  handleSubmit(event) {
+    event.preventDefault();
+    fetch('/cards', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        title: this.state.title,
+        priority: this.state.priority,
+        created_by: this.state.created_by,
+        assigned_to: this.state.assigned_to
+      })
+    })
+      .then(res => res.json())
+      .then((card) => {
+        return this.props.submitHandler(Object.assign({}, card))
+      })
+      .then(() => {
+        this.setState({ title: '', author: '' });
+      })
+  }
+
   render() {
     return (
       <div id="newCardWrap">
@@ -52,7 +77,6 @@ class NewCardForm extends Component {
             id="title"
             name="title"
             placeholder="Enter task title"
-            ref={input => this.textInput = input}
             value={this.state.title}
             onChange={this.titleChangeHandler}
           />
@@ -101,7 +125,7 @@ class NewCardForm extends Component {
         <div className="form debugging">
           <span>{this.state.title} </span>
           <span>{this.state.priority} </span>
-          <span>{this.state.created_by }</span>
+          <span>{this.state.created_by} </span>
           <span>{this.state.assigned_to} </span>
         </div>
       </div>

@@ -16,6 +16,8 @@ class App extends Component {
       cards: [],
       users: []
     }
+
+    this.addNewCard = this.addNewCard.bind(this);
   }
 
   componentDidMount() {
@@ -48,19 +50,9 @@ class App extends Component {
   }
 
   addNewCard(card) {
-    fetch('/cards', {
-      method: 'POST'
-      // body: { title, priority, status, assigned_to}
-    })
-    .then(res => res.json())
-    .then((card) => {
-      this.setState( {
+      this.setState({
         cards: [...this.state.cards, card]
       })
-    })
-    .catch((err) => {
-      console.log(err);
-    })
   }
 
   render() {
@@ -82,7 +74,7 @@ class App extends Component {
           }
         </div>
         <br/>
-        <NewCardForm userList={this.state.users} />
+        <NewCardForm userList={this.state.users} submitHandler={this.addNewCard}/>
       </div>
     );
   }
