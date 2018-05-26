@@ -66,6 +66,9 @@ class Card extends Component {
     })
       .then(res => res.json())
       .then(() => {
+        return this.props.fetcher();
+      })
+      .then(() => {
         return this.toggleInputs();
       })
   }
