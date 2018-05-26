@@ -61,7 +61,7 @@ class NewCardForm extends Component {
           <label htmlFor="title">Title: </label>
           <input
             type="text"
-            id="title"
+            id="newTitle"
             name="title"
             placeholder="Enter task title"
             value={this.state.title}
@@ -70,7 +70,7 @@ class NewCardForm extends Component {
 
           <label htmlFor="priority">Priority: </label>
           <select
-            id="cardPriority"
+            id="newPriority"
             name="priority"
             value = {this.state.priority}
             onChange={this.priorityChangeHandler}
@@ -82,7 +82,7 @@ class NewCardForm extends Component {
 
           <label htmlFor="creator"> Created by: </label>
           <select
-            id="createdBy"
+            id="newCreator"
             name="creator"
             value={this.state.created_by}
             onChange={this.creatorChangeHandler}
