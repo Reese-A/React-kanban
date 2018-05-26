@@ -17,7 +17,7 @@ class Card extends Component {
     this.priorityChangeHandler = this.priorityChangeHandler.bind(this);
     this.assigneeChangeHandler = this.assigneeChangeHandler.bind(this);
 
-    this.enableInputs = this.enableInputs.bind(this);
+    this.toggleInputs = this.toggleInputs.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleMoveRight = this.handleMoveRight.bind(this);
@@ -39,9 +39,7 @@ class Card extends Component {
     this.setState({ assigned_to: value })
   }
 
-  handleDelete(event) {
-    event.preventDefault();
-
+  handleDelete() {
     return fetch('/cards/' + this.state.cardId, {
       method: 'DELETE',
     })
@@ -68,13 +66,11 @@ class Card extends Component {
     })
       .then(res => res.json())
       .then(() => {
-        return this.props.fetcher();
+        return this.toggleInputs();
       })
   }
 
-  handleMoveRight(event) {
-    event.preventDefault();
-
+  handleMoveRight() {
     return fetch('/cards/' + this.state.cardId, {
       method: 'PUT',
       headers: {
@@ -91,9 +87,7 @@ class Card extends Component {
       })
   }
 
-  handleMoveLeft(event) {
-    event.preventDefault();
-
+  handleMoveLeft() {
     return fetch('/cards/' + this.state.cardId, {
       method: 'PUT',
       headers: {
@@ -110,10 +104,8 @@ class Card extends Component {
       })
   }
 
-  enableInputs(event) {
-    event.preventDefault();
-
-    if(this.state.disableInputs === true) {
+  toggleInputs(event) {
+    if (this.state.disableInputs === true) {
       this.setState({ disableInputs: false });
     } else {
       this.setState({ disableInputs: true });
@@ -131,7 +123,7 @@ class Card extends Component {
           value={this.state.title}
           onChange={this.titleChangeHandler}
         />
-        <br/>
+        <br />
 
         <label htmlFor="priority">Priority: </label>
         <select
@@ -145,7 +137,7 @@ class Card extends Component {
             return <Dropdown key={pri.id} item={pri} />
           })}
         </select>
-        <br/>
+        <br />
 
         {
           this.props.users.filter((creator => {
@@ -171,14 +163,14 @@ class Card extends Component {
             )
           })}
         </select>
-        <br/>
+        <br />
 
-        <button type="button" onClick={this.enableInputs}>Edit</button>
+        <button type="button" onClick={this.toggleInputs}>Edit</button>
         <button hidden={this.state.disableInputs} type="submit">Submit</button>
-        <br/>
+        <br />
 
         <button type="button" onClick={this.handleDelete}>Delete</button>
-        <br/>
+        <br />
 
         {this.props.status > 1
           ? <button type="button" onClick={this.handleMoveLeft}>move left</button>
@@ -186,55 +178,10 @@ class Card extends Component {
         {this.props.status < 3
           ? <button type="button" onClick={this.handleMoveRight}>move right</button>
           : null}
-          <br/>
-          <br/>
-          <span>{this.state.title}</span>
-          <span>{this.state.priority}</span>
-          <span>{this.props.card.status}</span>
-          <span>{this.state.assigned_to}</span>
-          <br/>
-          <br/>
+        <br />
+        <br />
+        <br />
       </form >
-
-      // <div className="card">
-      //   <h3>{this.props.card.title}</h3>
-      //   {this.props.priorities.filter((pri => {
-      //     return pri.id === this.props.card.priority
-      //   }))
-      //     .map((pri) => {
-      //       return <div key={pri.id}>{pri.name}</div>
-      //     })
-      //   }
-
-      //   {
-      //     this.props.users.filter((creator => {
-      //       return creator.id === this.props.card.created_by
-      //     }))
-      //       .map((creator) => {
-      //         return <div key={creator.id}>Created by: {creator.name}</div>
-      //       })
-      //   }
-
-      //   {
-      //     this.props.users.filter((assignee => {
-      //       return assignee.id === this.props.card.assigned_to
-      //     }))
-      //       .map((assignee) => {
-      //         return <div key={assignee.id}>Assigned to: {assignee.name}</div>
-      //       })
-      //   }
-      //   <br />
-      //   <form onSubmit={this.handleDelete}>
-      //     <button type="submit">Delete</button>
-      //   </form>
-      //   {this.props.status > 1
-      //     ? <button type="button" onClick={this.handleMoveLeft}>move left</button>
-      //     : null}
-      //   {this.props.status < 3
-      //     ? <button type="button" onClick={this.handleMoveRight}>move right</button>
-      //     : null}
-      //   <br />
-      // </div >
     )
   }
 }
