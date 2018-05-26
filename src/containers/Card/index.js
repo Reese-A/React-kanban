@@ -10,13 +10,15 @@ class Card extends Component {
       priority: this.props.card.priority,
       assigned_to: this.props.card.assigned_to,
       cardId: this.props.card.id,
-      editing: false
+      disableInputs: true
     }
 
     this.titleChangeHandler = this.titleChangeHandler.bind(this);
     this.priorityChangeHandler = this.priorityChangeHandler.bind(this);
     this.assigneeChangeHandler = this.assigneeChangeHandler.bind(this);
 
+    this.enableInputs = this.enableInputs.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleMoveRight = this.handleMoveRight.bind(this);
     this.handleMoveLeft = this.handleMoveLeft.bind(this);
@@ -42,6 +44,27 @@ class Card extends Component {
 
     return fetch('/cards/' + this.state.cardId, {
       method: 'DELETE',
+    })
+      .then(res => res.json())
+      .then(() => {
+        return this.props.fetcher();
+      })
+  }
+
+  handleEdit(event) {
+    event.preventDefault();
+
+    return fetch('/cards/' + this.state.cardId, {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        title: this.state.title,
+        priority: this.state.priority,
+        assigned_to: this.state.assigned_to
+      })
     })
       .then(res => res.json())
       .then(() => {
@@ -87,11 +110,21 @@ class Card extends Component {
       })
   }
 
+  enableInputs(event) {
+    event.preventDefault();
+
+    if(this.state.disableInputs === true) {
+      this.setState({ disableInputs: false });
+    } else {
+      this.setState({ disableInputs: true });
+    };
+  }
+
   render() {
     return (
-      <form className="card" onSubmit={this.handleSubmit}>
+      <form className="card" onSubmit={this.handleEdit}>
         <input
-          disabled="true"
+          disabled={this.state.disableInputs}
           type="text"
           id="editTitle"
           name="title"
@@ -102,7 +135,7 @@ class Card extends Component {
 
         <label htmlFor="priority">Priority: </label>
         <select
-          disabled="true"
+          disabled={this.state.disableInputs}
           id="editPriority"
           name="priority"
           value={this.state.priority}
@@ -125,7 +158,7 @@ class Card extends Component {
 
         <label htmlFor="assignee"> Assign to: </label>
         <select
-          disabled="true"
+          disabled={this.state.disableInputs}
           id="editAssignee"
           name="assignee"
           value={this.state.assigned_to}
@@ -140,11 +173,13 @@ class Card extends Component {
         </select>
         <br/>
 
-        <button hidden="true" type="submit">Submit</button>
+        <button type="button" onClick={this.enableInputs}>Edit</button>
+        <button hidden={this.state.disableInputs} type="submit">Submit</button>
+        <br/>
 
-        <form onSubmit={this.handleDelete}>
-          <button type="submit">Delete</button>
-        </form>
+        <button type="button" onClick={this.handleDelete}>Delete</button>
+        <br/>
+
         {this.props.status > 1
           ? <button type="button" onClick={this.handleMoveLeft}>move left</button>
           : null}
