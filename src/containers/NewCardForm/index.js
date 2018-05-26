@@ -97,7 +97,7 @@ class NewCardForm extends Component {
 
           <label htmlFor="assignee"> Assign to: </label>
           <select
-            id="assignedTo"
+            id="newAssignee"
             name="assignee"
             value={this.state.assigned_to}
             onChange={this.assigneeChangeHandler}
