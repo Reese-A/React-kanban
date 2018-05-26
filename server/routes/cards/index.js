@@ -81,10 +81,21 @@ router.route('/:id')
       assigned_to
     } = req.body;
 
+    if(title){
     title = title.trim();
+    }
+
+    if(priority) {
     priority = Number(priority);
+    }
+
+    if(status) {
     status = Number(status);
+    }
+
+    if(assigned_to) {
     assigned_to = Number(assigned_to);
+    }
 
     const updateObj = {
       title,

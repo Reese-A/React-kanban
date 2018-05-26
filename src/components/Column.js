@@ -11,9 +11,10 @@ const Column = props => {
 
       .map(card => {
         return (
-          <Card 
+          <Card
           key={card.id} 
           card={card}
+          status={props.statusId}
           priorities={props.priorities}
           users={props.users}
           fetcher={props.fetcher}

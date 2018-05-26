@@ -12,6 +12,7 @@ class Card extends Component {
 
     this.handleDelete = this.handleDelete.bind(this);
     this.handleMoveRight = this.handleMoveRight.bind(this);
+    this.handleMoveLeft = this.handleMoveLeft.bind(this);
   }
 
   handleDelete(event) {
@@ -37,6 +38,25 @@ class Card extends Component {
       },
       body: JSON.stringify({
         status: this.props.card.status + 1
+      })
+    })
+      .then(res => res.json())
+      .then(() => {
+        return this.props.fetcher();
+      })
+  }
+
+  handleMoveLeft(event) {
+    event.preventDefault();
+
+    return fetch('/cards/' + this.state.cardId, {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        status: this.props.card.status - 1
       })
     })
       .then(res => res.json())
@@ -78,9 +98,16 @@ class Card extends Component {
         <form onSubmit={this.handleDelete}>
           <button type="submit">Delete</button>
         </form>
-        <form onSubmit={this.handleMoveRight}>
-          <button type="submit">--></button>
-        </form>
+        {this.props.status < 3
+          ? <form onSubmit={this.handleMoveRight}>
+            <button type="submit">move right</button>
+          </form>
+          : null}
+        {this.props.status > 1
+          ? <form onSubmit={this.handleMoveLeft}>
+            <button type="submit">move left</button>
+          </form>
+          : null}
         <br />
       </div >
     )
