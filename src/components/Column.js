@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Card from '../components/Card';
+import Card from '../containers/Card';
 
 const Column = props => {
   return (<div className="column">
@@ -16,6 +16,7 @@ const Column = props => {
           card={card}
           priorities={props.priorities}
           users={props.users}
+          deleteHandler={props.delete}
           />
         )
       })

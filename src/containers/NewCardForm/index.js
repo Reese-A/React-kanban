@@ -8,9 +8,9 @@ class NewCardForm extends Component {
 
     this.state = {
       title: '',
-      priority: '',
-      created_by: '',
-      assigned_to: ''
+      priority: 1,
+      created_by: 1,
+      assigned_to: '',
     }
 
     this.titleChangeHandler = this.titleChangeHandler.bind(this);
@@ -72,10 +72,9 @@ class NewCardForm extends Component {
           <select
             id="cardPriority"
             name="priority"
-            value={this.state.priority}
+            value = {this.state.priority}
             onChange={this.priorityChangeHandler}
           >
-            <option value={null}></option>
             {this.props.priorities.map((pri) => {
               return <Dropdown key={pri.id} item={pri} />
             })}
@@ -115,9 +114,9 @@ class NewCardForm extends Component {
         </form>
         <div className="form debugging">
           <span>{this.state.title} </span>
-          <span>{this.state.priority} </span>
-          <span>{this.state.created_by} </span>
-          <span>{this.state.assigned_to} </span>
+          <span>Priority: {this.state.priority} </span>
+          <span>Creator: {this.state.created_by} </span>
+          <span>Assignee: {this.state.assigned_to} </span>
         </div>
       </div>
     )

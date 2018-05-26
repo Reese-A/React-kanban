@@ -17,6 +17,7 @@ class App extends Component {
       users: []
     }
 
+    this.fetchCards = this.fetchCards.bind(this);
     this.addNewCard = this.addNewCard.bind(this);
   }
 
@@ -48,6 +49,18 @@ class App extends Component {
         console.log(err);
       });
   }
+
+  fetchCards() {
+    return fetch('/cards')
+    .then(res => res.json())
+    .then((cards) => {
+      console.log(cards);
+      this.setState({
+        cards: cards
+      });
+    })
+  }
+
 
   addNewCard(card) {
     return fetch('/cards',
@@ -95,6 +108,7 @@ class App extends Component {
                 cards={this.state.cards}
                 users={this.state.users}
                 priorities={this.state.priorities}
+                delete={this.fetchCards}
               />
             )
           })}

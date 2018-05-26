@@ -27,7 +27,11 @@ const Card = ({ card, priorities, users }) => {
           return <div key={assignee.id}>Assigned to: {assignee.name}</div>
         })
       }
-      <br />
+      <br/>
+      <form onSubmit={this.handleDelete}>
+        <button type="submit">Delete</button>
+      </form>
+      <br/>
     </div>
   )
 }

@@ -32,8 +32,12 @@ router.route('/')
     created_by = Number(created_by);
     assigned_to = Number(assigned_to);
 
+    if (!title) {
+      throw new Error('Please enter a title');
+    }
+
     if(!assigned_to){
-      assign_to = null;
+      assigned_to = null;
     }
     
     return new Card({
@@ -51,6 +55,20 @@ router.route('/')
     .catch((err) => {
       console.log(err);
     })
+  })
+
+
+router.route('/:id')
+  .delete((req,res) => {
+    const id = req.params.id;
+    return new Card({ id })
+    .destroy()
+    .then(() => {
+      return res.json({ success: true });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   })
 
 module.exports = router;
