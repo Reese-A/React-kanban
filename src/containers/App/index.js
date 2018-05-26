@@ -54,7 +54,6 @@ class App extends Component {
     return fetch('/cards')
     .then(res => res.json())
     .then((cards) => {
-      console.log(cards);
       this.setState({
         cards: cards
       });
@@ -108,7 +107,7 @@ class App extends Component {
                 cards={this.state.cards}
                 users={this.state.users}
                 priorities={this.state.priorities}
-                delete={this.fetchCards}
+                fetcher={this.fetchCards}
               />
             )
           })}

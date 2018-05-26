@@ -7,9 +7,11 @@ class Card extends Component {
 
     this.state = {
       cardId: this.props.card.id,
+      editing: false
     }
 
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleMoveRight = this.handleMoveRight.bind(this);
   }
 
   handleDelete(event) {
@@ -18,15 +20,34 @@ class Card extends Component {
     return fetch('/cards/' + this.state.cardId, {
       method: 'DELETE',
     })
-    .then(res => res.json())
-    .then(() => {
-      return this.props.deleteHandler();
+      .then(res => res.json())
+      .then(() => {
+        return this.props.fetcher();
+      })
+  }
+
+  handleMoveRight(event) {
+    event.preventDefault();
+
+    return fetch('/cards/' + this.state.cardId, {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        status: this.props.card.status + 1
+      })
     })
+      .then(res => res.json())
+      .then(() => {
+        return this.props.fetcher();
+      })
   }
 
   render() {
     return (
-      <div className="card" key={this.props.card.id} >
+      <div className="card">
         <h3>{this.props.card.title}</h3>
         {this.props.priorities.filter((pri => {
           return pri.id === this.props.card.priority
@@ -56,6 +77,9 @@ class Card extends Component {
         <br />
         <form onSubmit={this.handleDelete}>
           <button type="submit">Delete</button>
+        </form>
+        <form onSubmit={this.handleMoveRight}>
+          <button type="submit">--></button>
         </form>
         <br />
       </div >

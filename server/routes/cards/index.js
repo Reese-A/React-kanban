@@ -67,8 +67,40 @@ router.route('/:id')
       return res.json({ success: true });
     })
     .catch((err) => {
-      console.log(err);
+      console.log(err);i
     });
+  })
+
+  .put((req, res) => {
+    const id = req.params.id;
+    
+    let {
+      title,
+      priority,
+      status,
+      assigned_to
+    } = req.body;
+
+    title = title.trim();
+    priority = Number(priority);
+    status = Number(status);
+    assigned_to = Number(assigned_to);
+
+    const updateObj = {
+      title,
+      priority,
+      status,
+      assigned_to
+    }
+
+    return new Card({ id })
+    .save(updateObj, {
+      method: 'update',
+      // patch: true
+    })
+    .then((card) => {
+      return res.json({card});
+    })
   })
 
 module.exports = router;

@@ -16,7 +16,7 @@ const Column = props => {
           card={card}
           priorities={props.priorities}
           users={props.users}
-          deleteHandler={props.delete}
+          fetcher={props.fetcher}
           />
         )
       })

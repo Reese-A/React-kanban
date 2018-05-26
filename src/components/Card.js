@@ -4,6 +4,7 @@ const Card = ({ card, priorities, users }) => {
   return (
     <div className="card" key={card.id}>
       <h3>{card.title}</h3>
+      
       {priorities.filter((pri => {
         return pri.id === card.priority
       }))

@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Dropdown = props => {
+const Dropdown = ({ item }) => {
   return (
-    <option key={props.item.id} value={props.item.id}>{props.item.name}</option>
+    <option key={item.id} value={item.id}>{item.name}</option>
   )
 }
 
