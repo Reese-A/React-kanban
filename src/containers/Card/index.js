@@ -27,17 +27,17 @@ class Card extends Component {
   titleChangeHandler(event) {
     const { value } = event.target
     this.setState({ title: value })
-  }
+  };
 
   priorityChangeHandler(event) {
     const { value } = event.target
     this.setState({ priority: value })
-  }
+  };
 
   assigneeChangeHandler(event) {
     const { value } = event.target
     this.setState({ assigned_to: value })
-  }
+  };
 
   handleDelete() {
     return fetch('/cards/' + this.state.cardId, {
@@ -47,7 +47,7 @@ class Card extends Component {
       .then(() => {
         return this.props.fetcher();
       })
-  }
+  };
 
   handleEdit(event) {
     event.preventDefault();
@@ -71,7 +71,7 @@ class Card extends Component {
       .then(() => {
         return this.toggleInputs();
       })
-  }
+  };
 
   handleMoveRight() {
     return fetch('/cards/' + this.state.cardId, {
@@ -88,7 +88,7 @@ class Card extends Component {
       .then(() => {
         return this.props.fetcher();
       })
-  }
+  };
 
   handleMoveLeft() {
     return fetch('/cards/' + this.state.cardId, {
@@ -105,19 +105,19 @@ class Card extends Component {
       .then(() => {
         return this.props.fetcher();
       })
-  }
+  };
 
   toggleInputs(event) {
     if (this.state.disableInputs === true) {
       return this.setState({ disableInputs: false });
     } else {
       return this.setState({ disableInputs: true });
-    };
-  }
+    }
+  };
 
   render() {
     return (
-      <form className="card" onSubmit={this.handleEdit}>
+      <form className="card" draggable="true" onSubmit={this.handleEdit}>
         <input
           disabled={this.state.disableInputs}
           type="text"
@@ -168,7 +168,7 @@ class Card extends Component {
         </select>
         <br />
 
-        <a onClick={this.toggleInputs}>Edit</a>
+        <a onClick={this.toggleInputs} hidden={!this.state.disableInputs}>Edit</a>
         <button className="submitEdit" hidden={this.state.disableInputs} type="submit">Submit</button>
         <a onClick={this.handleDelete}>Delete</a>
         <br/>

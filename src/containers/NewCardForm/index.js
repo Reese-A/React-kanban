@@ -124,12 +124,6 @@ class NewCardForm extends Component {
           <button type="submit">Submit</button>
         </form>
         <a id="newButton" onClick={this.toggleForm}>+ New Task</a>
-        {/* <div className="form debugging">
-          <span>{this.state.title} </span>
-          <span>Priority: {this.state.priority} </span>
-          <span>Creator: {this.state.created_by} </span>
-          <span>Assignee: {this.state.assigned_to} </span>
-        </div> */}
       </div>
     )
   }

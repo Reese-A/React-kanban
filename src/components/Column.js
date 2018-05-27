@@ -4,11 +4,12 @@ import Card from '../containers/Card';
 
 const Column = props => {
   return (<div className="column">
-    <h2 className="statusName">{props.statusName}</h2>
+    <div className="statusName">{props.statusName.toUpperCase()}</div>
+    <br/>
+
     {props.cards.filter(card => {
       return card.status === props.statusId;
     })
-
       .map(card => {
         return (
           <Card

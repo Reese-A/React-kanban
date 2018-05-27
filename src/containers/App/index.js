@@ -22,7 +22,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.setState({ title: "Kanban" })
+    this.setState({ title: "KANBAN" })
     const pri = fetch('/priorities');
     const stat = fetch('/status');
     const cards = fetch('/cards');
