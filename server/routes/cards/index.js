@@ -94,6 +94,10 @@ router.route('/:id')
     status = Number(status);
     }
 
+    if (assigned_to === '') {
+      assigned_to = null;
+    }
+
     if(assigned_to) {
     assigned_to = Number(assigned_to);
     }
