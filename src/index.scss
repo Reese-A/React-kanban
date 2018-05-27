@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 #header {
@@ -24,6 +24,9 @@ body {
     color: rgb(209, 210, 212);
     #newCard {
       margin-right: 10px;
+      #newTitle {
+        margin-right: 5px;
+      }
       #newAssignee {
         margin-right: 10px;
       }
@@ -39,10 +42,12 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  height: 95vh;
+  height: 100vh;
   color: rgb(94, 97, 102);
   .statusName {
+    font-size: 15px;
     text-align: center;
+    color: rgb(138, 141, 147);
   }
   .column:first-child {
     padding: 15px;
@@ -90,14 +95,14 @@ body {
   }
   input {
     width: 100%;
-    font-size: 25px;
+    font-size: 23px;
   }
   input:disabled {
     width: 100%;
     background: none;
     color: rgb(94, 97, 102);
     border: none;
-    font-size: 25px;
+    font-size: 23px;
     -webkit-appearance: none;
     -moz-appearance: none;
   }
