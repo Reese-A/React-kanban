@@ -22,7 +22,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.setState({ title: "React Kanban" })
+    this.setState({ title: "Kanban" })
     const pri = fetch('/priorities');
     const stat = fetch('/status');
     const cards = fetch('/cards');
@@ -52,12 +52,12 @@ class App extends Component {
 
   fetchCards() {
     return fetch('/cards')
-    .then(res => res.json())
-    .then((cards) => {
-      this.setState({
-        cards: cards
-      });
-    })
+      .then(res => res.json())
+      .then((cards) => {
+        this.setState({
+          cards: cards
+        });
+      })
   }
 
 
@@ -88,15 +88,15 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header title={this.state.title} />
+        <div id="header">
+          <Header title={this.state.title} />
+          <NewCardForm
+            priorities={this.state.priorities}
+            users={this.state.users}
+            submitHandler={this.addNewCard}
+          />
+        </div>
         <br />
-
-        <NewCardForm
-          priorities={this.state.priorities}
-          users={this.state.users}
-          submitHandler={this.addNewCard}
-        />
-        <br/>
 
         <div id="contentWrap">
           {this.state.statuses.map(status => {

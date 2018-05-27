@@ -4,13 +4,109 @@ body {
   font-family: sans-serif;
 }
 
+#header {
+  background-color: rgb(77, 82, 90);
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  height: 5vh;
+  #headerTitle {
+    margin-left: 40px;
+    color: rgb(209, 210, 212);
+    font-size: 20px;
+  }
+  #newCardWrap {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 15px;
+    color: rgb(209, 210, 212);
+    a {
+      border: 1px solid rgb(209, 210, 212);
+      padding: 5px;
+    }
+  }
+}
+
 #contentWrap {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  height: 85vh;
+  color: rgb(94, 97, 102);
+  .statusName {
+    text-align: center;
+  }
+  .column:first-child {
+    padding: 10px;
+    width: 32%;
+    border-right: 1px solid rgb(184, 184, 184);
+    .card {
+      padding: 10px;
+      background-color: rgb(252, 242, 224);
+      border: 2px solid rgb(241, 188, 109);
+      margin-bottom: 10px;
+      a {
+        color: rgb(240, 189, 105);
+        margin-right: 20px;
+      }
+    }
+  }
+  .column:nth-child(2) {
+    padding: 10px;
+    width: 32%;
+    .card {
+      padding: 10px;
+      background-color: rgb(234, 252, 207);
+      border: 2px solid rgb(171, 214, 114);
+      margin-bottom: 10px;
+      a {
+        color: rgb(164, 211, 101);
+        margin-right: 20px;
+      }
+    }
+  }
+  .column:last-child {
+    padding: 10px;
+    width: 32%;
+    border-left: 1px solid rgb(184, 184, 184);
+    .card {
+      padding: 10px;
+      background-color: rgb(247, 248, 251);
+      border: 2px solid rgb(207, 211, 220);
+      margin-bottom: 10px;
+      a {
+        color: rgb(193, 199, 208);
+        margin-right: 20px;
+      }
+    }
+  }
+  input {
+    width: 100%;
+    font-size: 25px;
+  }
+  input:disabled {
+    width: 100%;
+    background: none;
+    color: rgb(94, 97, 102);
+    border: none;
+    font-size: 25px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+  select {
+    font-size: 15px;
+  }
+  select:disabled {
+    background: none;
+    color: rgb(94, 97, 102);
+    border: none;
+    font-size: 17px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+  .submitEdit {
+    margin-right: 20px;
+  }
 }
-
-.column {
-  width: 32%;
-}
-

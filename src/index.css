@@ -4,13 +4,128 @@ body {
   font-family: sans-serif;
 }
 
+#header {
+  background-color: #4d525a;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  height: 5vh;
+}
+
+#header #headerTitle {
+  margin-left: 40px;
+  color: #d1d2d4;
+  font-size: 20px;
+}
+
+#header #newCardWrap {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 15px;
+  color: #d1d2d4;
+}
+
+#header #newCardWrap a {
+  border: 1px solid #d1d2d4;
+  padding: 5px;
+}
+
 #contentWrap {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  height: 85vh;
+  color: #5e6166;
 }
 
-.column {
+#contentWrap .statusName {
+  text-align: center;
+}
+
+#contentWrap .column:first-child {
+  padding: 10px;
   width: 32%;
+  border-right: 1px solid #b8b8b8;
+}
+
+#contentWrap .column:first-child .card {
+  padding: 10px;
+  background-color: #fcf2e0;
+  border: 2px solid #f1bc6d;
+  margin-bottom: 10px;
+}
+
+#contentWrap .column:first-child .card a {
+  color: #f0bd69;
+  margin-right: 20px;
+}
+
+#contentWrap .column:nth-child(2) {
+  padding: 10px;
+  width: 32%;
+}
+
+#contentWrap .column:nth-child(2) .card {
+  padding: 10px;
+  background-color: #eafccf;
+  border: 2px solid #abd672;
+  margin-bottom: 10px;
+}
+
+#contentWrap .column:nth-child(2) .card a {
+  color: #a4d365;
+  margin-right: 20px;
+}
+
+#contentWrap .column:last-child {
+  padding: 10px;
+  width: 32%;
+  border-left: 1px solid #b8b8b8;
+}
+
+#contentWrap .column:last-child .card {
+  padding: 10px;
+  background-color: #f7f8fb;
+  border: 2px solid #cfd3dc;
+  margin-bottom: 10px;
+}
+
+#contentWrap .column:last-child .card a {
+  color: #c1c7d0;
+  margin-right: 20px;
+}
+
+#contentWrap input {
+  width: 100%;
+  font-size: 25px;
+}
+
+#contentWrap input:disabled {
+  width: 100%;
+  background: none;
+  color: #5e6166;
+  border: none;
+  font-size: 25px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+#contentWrap select {
+  font-size: 15px;
+}
+
+#contentWrap select:disabled {
+  background: none;
+  color: #5e6166;
+  border: none;
+  font-size: 17px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+#contentWrap .submitEdit {
+  margin-right: 20px;
 }
 /*# sourceMappingURL=index.css.map */

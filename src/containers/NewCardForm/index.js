@@ -13,11 +13,16 @@ class NewCardForm extends Component {
       assigned_to: '',
     }
 
+    this.focusTextInput = this.focusTextInput.bind(this);
     this.titleChangeHandler = this.titleChangeHandler.bind(this);
     this.priorityChangeHandler = this.priorityChangeHandler.bind(this);
     this.creatorChangeHandler = this.creatorChangeHandler.bind(this);
     this.assigneeChangeHandler = this.assigneeChangeHandler.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    this.focusTextInput();
   }
 
   titleChangeHandler(event) {
@@ -40,6 +45,10 @@ class NewCardForm extends Component {
     this.setState({ assigned_to: value })
   }
 
+  focusTextInput() {
+    this.textInput.focus()
+  }
+
   handleSubmit(event) {
     event.preventDefault();
 
@@ -54,16 +63,18 @@ class NewCardForm extends Component {
       })
   }
 
+
   render() {
     return (
       <div id="newCardWrap">
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} hidden="true">
           <label htmlFor="title">Title: </label>
           <input
             type="text"
             id="newTitle"
             name="title"
             placeholder="Enter task title"
+            ref={input => this.textInput = input}
             value={this.state.title}
             onChange={this.titleChangeHandler}
           />
@@ -112,12 +123,13 @@ class NewCardForm extends Component {
 
           <button type="submit">Submit</button>
         </form>
-        <div className="form debugging">
+        <a id="newButton" onClick={this.toggleForm}>+ New Task</a>
+        {/* <div className="form debugging">
           <span>{this.state.title} </span>
           <span>Priority: {this.state.priority} </span>
           <span>Creator: {this.state.created_by} </span>
           <span>Assignee: {this.state.assigned_to} </span>
-        </div>
+        </div> */}
       </div>
     )
   }

@@ -2,9 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Header = ({title}) => (
-  <div className="header">
-  <h1 id="headerTitle">{title}</h1>
-  </div>
+  <div id="headerTitle">{title}</div>
 )
 
 Header.propTypes = {

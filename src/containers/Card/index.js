@@ -121,7 +121,7 @@ class Card extends Component {
         <input
           disabled={this.state.disableInputs}
           type="text"
-          id="editTitle"
+          className="editTitle"
           name="title"
           value={this.state.title}
           onChange={this.titleChangeHandler}
@@ -131,7 +131,7 @@ class Card extends Component {
         <label htmlFor="priority">Priority: </label>
         <select
           disabled={this.state.disableInputs}
-          id="editPriority"
+          className="editPriority"
           name="priority"
           value={this.state.priority}
           onChange={this.priorityChangeHandler}
@@ -147,14 +147,14 @@ class Card extends Component {
             return creator.id === this.props.card.created_by
           }))
             .map((creator) => {
-              return <div key={creator.id}>Created by: {creator.name}</div>
+              return <div key={creator.id} className="creatorName">Created by: {creator.name}</div>
             })
         }
 
-        <label htmlFor="assignee"> Assign to: </label>
+        <label htmlFor="assignee"> Assigned to: </label>
         <select
           disabled={this.state.disableInputs}
-          id="editAssignee"
+          className="editAssignee"
           name="assignee"
           value={this.state.assigned_to}
           onChange={this.assigneeChangeHandler}
@@ -168,12 +168,10 @@ class Card extends Component {
         </select>
         <br />
 
-        <button type="button" onClick={this.toggleInputs}>Edit</button>
-        <button hidden={this.state.disableInputs} type="submit">Submit</button>
-        <br />
-
-        <button type="button" onClick={this.handleDelete}>Delete</button>
-        <br />
+        <a onClick={this.toggleInputs}>Edit</a>
+        <button className="submitEdit" hidden={this.state.disableInputs} type="submit">Submit</button>
+        <a onClick={this.handleDelete}>Delete</a>
+        <br/>
 
         {this.props.status > 1
           ? <button type="button" onClick={this.handleMoveLeft}>move left</button>
@@ -181,9 +179,6 @@ class Card extends Component {
         {this.props.status < 3
           ? <button type="button" onClick={this.handleMoveRight}>move right</button>
           : null}
-        <br />
-        <br />
-        <br />
       </form >
     )
   }
