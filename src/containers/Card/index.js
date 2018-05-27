@@ -118,8 +118,9 @@ class Card extends Component {
   render() {
     return (
       <form className="card" draggable="true" onSubmit={this.handleEdit}>
+      <div className="titleDiv" hidden={!this.state.disableInputs}>{this.state.title}</div>
         <input
-          disabled={this.state.disableInputs}
+          hidden={this.state.disableInputs}
           type="text"
           className="editTitle"
           name="title"

@@ -111,16 +111,21 @@ body {
   margin-right: 20px;
 }
 
+#contentWrap .titleDiv {
+  font-size: 23px;
+}
+
 #contentWrap input {
   width: 100%;
   font-size: 23px;
 }
 
-#contentWrap input:disabled {
+#contentWrap input:hidden {
   width: 100%;
   background: none;
   color: #5e6166;
   border: none;
+  font-family: 'Montserrat', sans-serif;
   font-size: 23px;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -135,6 +140,7 @@ body {
   color: #5e6166;
   border: none;
   font-size: 17px;
+  font-family: 'Montserrat', sans-serif;
   -webkit-appearance: none;
   -moz-appearance: none;
 }

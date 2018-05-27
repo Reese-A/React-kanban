@@ -112,7 +112,6 @@ router.route('/:id')
     return new Card({ id })
     .save(updateObj, {
       method: 'update',
-      // patch: true
     })
     .then((card) => {
       return res.json({card});
