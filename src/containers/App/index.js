@@ -96,7 +96,6 @@ class App extends Component {
             submitHandler={this.addNewCard}
           />
         </div>
-        <br />
 
         <div id="contentWrap">
           {this.state.statuses.map(status => {

@@ -10,7 +10,7 @@ body {
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  height: 5vh;
+  height: 6vh;
 }
 
 #header #headerTitle {
@@ -27,6 +27,14 @@ body {
   color: #d1d2d4;
 }
 
+#header #newCardWrap #newCard {
+  margin-right: 10px;
+}
+
+#header #newCardWrap #newCard #newAssignee {
+  margin-right: 10px;
+}
+
 #header #newCardWrap a {
   border: 1px solid #d1d2d4;
   padding: 5px;
@@ -36,7 +44,7 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  height: 85vh;
+  height: 95vh;
   color: #5e6166;
 }
 
@@ -45,7 +53,7 @@ body {
 }
 
 #contentWrap .column:first-child {
-  padding: 10px;
+  padding: 15px;
   width: 32%;
   border-right: 1px solid #b8b8b8;
 }
@@ -63,7 +71,7 @@ body {
 }
 
 #contentWrap .column:nth-child(2) {
-  padding: 10px;
+  padding: 15px;
   width: 32%;
 }
 
@@ -80,7 +88,7 @@ body {
 }
 
 #contentWrap .column:last-child {
-  padding: 10px;
+  padding: 15px;
   width: 32%;
   border-left: 1px solid #b8b8b8;
 }

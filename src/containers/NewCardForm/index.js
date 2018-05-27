@@ -11,18 +11,15 @@ class NewCardForm extends Component {
       priority: 1,
       created_by: 1,
       assigned_to: '',
+      hideForm: true
     }
 
-    this.focusTextInput = this.focusTextInput.bind(this);
+    this.toggleForm = this.toggleForm.bind(this);
     this.titleChangeHandler = this.titleChangeHandler.bind(this);
     this.priorityChangeHandler = this.priorityChangeHandler.bind(this);
     this.creatorChangeHandler = this.creatorChangeHandler.bind(this);
     this.assigneeChangeHandler = this.assigneeChangeHandler.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  componentDidMount() {
-    this.focusTextInput();
   }
 
   titleChangeHandler(event) {
@@ -45,10 +42,6 @@ class NewCardForm extends Component {
     this.setState({ assigned_to: value })
   }
 
-  focusTextInput() {
-    this.textInput.focus()
-  }
-
   handleSubmit(event) {
     event.preventDefault();
 
@@ -63,18 +56,25 @@ class NewCardForm extends Component {
       })
   }
 
+  toggleForm() {
+    if(this.state.hideForm === true){
+      return this.setState({ hideForm: false });
+    } else {
+      return this.setState({ hideForm: true });
+    }
+  }
+
 
   render() {
     return (
       <div id="newCardWrap">
-        <form onSubmit={this.handleSubmit} hidden="true">
+        <form id="newCard" onSubmit={this.handleSubmit} hidden={this.state.hideForm}>
           <label htmlFor="title">Title: </label>
           <input
             type="text"
             id="newTitle"
             name="title"
             placeholder="Enter task title"
-            ref={input => this.textInput = input}
             value={this.state.title}
             onChange={this.titleChangeHandler}
           />

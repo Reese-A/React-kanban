@@ -109,9 +109,9 @@ class Card extends Component {
 
   toggleInputs(event) {
     if (this.state.disableInputs === true) {
-      this.setState({ disableInputs: false });
+      return this.setState({ disableInputs: false });
     } else {
-      this.setState({ disableInputs: true });
+      return this.setState({ disableInputs: true });
     };
   }
 
