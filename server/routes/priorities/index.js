@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.route('/')
   .get((req, res) => {
-    return Priority()
+    return new Priority()
       .fetchAll()
       .then((priorities) => {
         console.log(priorities);
@@ -20,9 +20,9 @@ router.route('/')
 
   .post((req,res) => {
     
-    let { priority } = req.body;
+    let { name } = req.body;
 
-    return new Priority({ priority })
+    return new Priority({ name })
     .save()
     .then((priority) => {
       return res.json({ success: true });
