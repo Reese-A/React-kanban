@@ -27,7 +27,7 @@ class App extends Component {
     const stat = fetch('/status');
     const cards = fetch('/cards');
     const users = fetch('/users');
-    Promise.all([pri, stat, cards, users])
+    return Promise.all([pri, stat, cards, users])
       .then((result) => {
         const [pri, stat, cards, users] = result;
         return Promise.all([pri.json(), stat.json(), cards.json(), users.json()])

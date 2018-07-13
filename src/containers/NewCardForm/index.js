@@ -57,7 +57,7 @@ class NewCardForm extends Component {
   }
 
   toggleForm() {
-    if(this.state.hideForm === true){
+    if (this.state.hideForm === true) {
       return this.setState({ hideForm: false });
     } else {
       return this.setState({ hideForm: true });
@@ -83,12 +83,14 @@ class NewCardForm extends Component {
           <select
             id="newPriority"
             name="priority"
-            value = {this.state.priority}
+            value={this.state.priority}
             onChange={this.priorityChangeHandler}
           >
-            {this.props.priorities.map((pri) => {
-              return <Dropdown key={pri.id} item={pri} />
-            })}
+            {
+              this.props.priorities.map((pri) => {
+                return <Dropdown key={pri.id} item={pri} />
+              })
+            }
           </select>
 
           <label htmlFor="creator"> Created by: </label>
@@ -99,11 +101,14 @@ class NewCardForm extends Component {
             onChange={this.creatorChangeHandler}
           >
             <option value={null}></option>
-            {this.props.users.map(user => {
-              return (
-                <Dropdown key={user.id} item={user} />
+            {
+              this.props.users.map(user => {
+                return (
+                  <Dropdown key={user.id} item={user} />
+                )
+              }
               )
-            })}
+            }
           </select>
 
           <label htmlFor="assignee"> Assign to: </label>

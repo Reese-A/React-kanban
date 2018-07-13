@@ -160,7 +160,7 @@ class Card extends Component {
           value={this.state.assigned_to}
           onChange={this.assigneeChangeHandler}
         >
-          <option value={null}></option>
+          <option value=''></option>
           {this.props.users.map(user => {
             return (
               <Dropdown key={user.id} item={user} />
@@ -169,7 +169,7 @@ class Card extends Component {
         </select>
         <br />
 
-        <a onClick={this.toggleInputs} hidden={!this.state.disableInputs}>Edit</a>
+        <a onClick={this.toggleInputs}>Edit</a>
         <button className="submitEdit" hidden={this.state.disableInputs} type="submit">Submit</button>
         <a onClick={this.handleDelete}>Delete</a>
         <br/>
